@@ -1,0 +1,31 @@
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'drop.css' %}">
+<div class="navbar">
+        <div class="logo">VK WOOD</div>
+        <ul class="menu">
+            <li><a href="{% url 'ecomapp:allProductCat' %}">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Category</a>
+                <ul class="dropdown-content">
+                    {% for cat in links %}
+                        <li><a href="{{cat.get_url}}">{{cat.name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="{% url 'my_cart:prod_Cat_Det' %}">my cart</a></li>
+
+            <li><a href="{% url 'cart:cart_detail' %}"><i class="fa-solid fa-cart-shopping"></i>({{item_count}})</a></li>
+
+
+        </ul>
+        <div class="search-bar">
+            <form class="form-inline my-2 my-lg-0" action="{% url 'search_app:SearchResult' %}" method="get">
+            {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>

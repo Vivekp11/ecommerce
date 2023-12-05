@@ -1,0 +1,77 @@
+
+/* Basic Navbar Styles */
+.navbar {
+    background-color:#5C4033;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:20px;
+}
+
+/* Logo Styles */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Menu Styles */
+.menu {
+    list-style: none;
+    display: flex;
+    margin-left:-200px;
+    margin-top: 25px
+}
+
+.menu li {
+    margin-right: 45px;
+}
+
+/* Link Styles */
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s; /* Smooth color transition on hover */
+}
+
+.menu a:hover {
+    color: #00FFFF; /* Change link color on hover */
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    display: flex;
+}
+
+.search-bar input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.search-bar button {
+    background-color: #333;
+    color:#00FFFF;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-left: 5px;
+}

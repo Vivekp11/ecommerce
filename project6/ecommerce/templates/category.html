@@ -1,0 +1,83 @@
+
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'custom.css' %}">
+{% block metadescription %}
+    {% if category %}
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+        Welcome to my store
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{ category.name }} - ABC Store
+    {% else %}
+        Our new collection
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if category %}
+
+
+            <div>
+                <div class="alert alert-dark" role="alert">
+                    <a href="{% url 'ecomapp:allProductCat' %}"
+                          class="badge badge-secondary"
+                          style="text-center">Our Product Collections</a>
+                </div>
+            </div>
+    {% endif %}
+    <div>
+        {% if category %}
+            <div>
+                <h1 class="display-3">{{category.name}}</h1>
+                <p>{{category.description}}</p>
+            </div>
+        {% else %}<br>
+        <div>
+                <img src="{% static 'image/homebanner.png' %}"  width="100%" alt="Our products">
+
+                <h3>Our Product Collection</h3>
+                <nav class="navbar navbar-light bg-light">
+                    <span class="container">
+                        <p class="font-weight-light">When using Lorem Ipsum for creating dummy content for your newly created website,
+                        you can select the text formats you want from the tool. Like, words, sentences,
+                        or paragraphs. Then, you can select whether you want HTML markup in your dummy
+                        content or not Then, you can choose the number of words and paragraphs for your
+                        dummy content and execute the plan accordingly. You can use this tool at incrementors.</p>
+                </span>
+            </nav>
+
+
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4">
+            <div class="shadow-card" style="width: 18rem;">
+                <a href="{{product.get_url}}"><img src="{{product.image.url}}" alt="{{product.name}}"></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p>{{product.price}}</p>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="{{product.get_url}}" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="mx-auto">
+            {% if products.paginator.num_pages > 1 %}
+                <div class="text-center">
+                    {% for pg in products.paginator.page_range %}
+                        <a href="?page={{pg}}" class="btn btn-light btn-sm> {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <br>
+    </div>
+{% endblock %}
